@@ -1,0 +1,16 @@
+{
+  "name": "tennis-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^5.5.3",
+    "vitest": "^4.1.10"
+  },
+  "private": true
+}
