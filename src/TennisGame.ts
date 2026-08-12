@@ -31,16 +31,12 @@ export class TennisGame1 implements TennisGame {
             return `${TENNIS_SCORE[this.m_score1]}-All`
         }
         if(this.m_score1 >= 4 || this.m_score2 >= 4) {
-            const minusResult: number = this.m_score1 - this.m_score2;
-            return this.finalScoreWhenOnePlayerHaveAtLeastFourPoints(minusResult);
+            let minusResult: number = this.m_score1 - this.m_score2;
+            const player = minusResult > 0 ? this.player1Name : this.player2Name;
+            if(minusResult < 0 ) minusResult = -minusResult;
+            return minusResult === 1 ? `Advantage ${player}` : `Win for ${player}`;
         }
         return `${TENNIS_SCORE[this.m_score1]}-${TENNIS_SCORE[this.m_score2]}`;
-    }
-    private finalScoreWhenOnePlayerHaveAtLeastFourPoints(minusResult: number) {
-        if (minusResult === 1) return 'Advantage player1';
-        else if (minusResult === -1) return 'Advantage player2';
-        else if (minusResult >= 2) return 'Win for player1';
-        else return 'Win for player2';
     }
 
 
