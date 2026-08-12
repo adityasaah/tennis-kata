@@ -1,17 +1,16 @@
 import { TennisGame } from './TennisGame.interface';
 
-const EQUAL_SCORE_NAMES: Record<number, string> = {
-    0: 'Love-All',
-    1: 'Fifteen-All',
-    2: 'Thirty-All',
-    3: 'Deuce'
-};
-
 const TENNIS_SCORE: Record<number, string> = {
-    0: 'Love',
-    1: 'Fifteen',
-    2: 'Thirty',
-    3: 'Forty'
+    0: `Love`,
+    1: `Fifteen`,
+    2: `Thirty`,
+    3: `Forty`
+};
+const EQUAL_SCORE_NAMES: Record<number, string> = {
+    0: `${TENNIS_SCORE[0]}-All`,
+    1: `${TENNIS_SCORE[1]}-All`,
+    2: `${TENNIS_SCORE[2]}-All`,
+    3: `Deuce`
 };
 
 export class TennisGame1 implements TennisGame {
