@@ -6,12 +6,6 @@ const TENNIS_SCORE: Record<number, string> = {
     2: `Thirty`,
     3: `Forty`
 };
-const EQUAL_SCORE_NAMES: Record<number, string> = {
-    0: `${TENNIS_SCORE[0]}-All`,
-    1: `${TENNIS_SCORE[1]}-All`,
-    2: `${TENNIS_SCORE[2]}-All`,
-    3: `Deuce`
-};
 
 export class TennisGame1 implements TennisGame {
     private m_score1: number = 0;
@@ -32,19 +26,17 @@ export class TennisGame1 implements TennisGame {
     }
 
     getScore(): string {
-        if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-            if(this.m_score1 === this.m_score2){
-                return 'Deuce';
-            }
-            return this.finalScoreWhenOnePlayerHaveAtLeastFourPoints();
+        if(this.m_score1 === this.m_score2){
+            if(this.m_score1 >= 3) return 'Deuce';
+            return `${TENNIS_SCORE[this.m_score1]}-All`
         }
-        else if (this.m_score1 === this.m_score2) {
-            return EQUAL_SCORE_NAMES[this.m_score1];
+        if(this.m_score1 >= 4 || this.m_score2 >= 4) {
+            const minusResult: number = this.m_score1 - this.m_score2;
+            return this.finalScoreWhenOnePlayerHaveAtLeastFourPoints(minusResult);
         }
         return `${TENNIS_SCORE[this.m_score1]}-${TENNIS_SCORE[this.m_score2]}`;
     }
-    private finalScoreWhenOnePlayerHaveAtLeastFourPoints() {
-        const minusResult: number = this.m_score1 - this.m_score2;
+    private finalScoreWhenOnePlayerHaveAtLeastFourPoints(minusResult: number) {
         if (minusResult === 1) return 'Advantage player1';
         else if (minusResult === -1) return 'Advantage player2';
         else if (minusResult >= 2) return 'Win for player1';
