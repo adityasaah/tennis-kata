@@ -1,5 +1,12 @@
 import { TennisGame } from './TennisGame.interface';
 
+const EQUAL_SCORE_NAMES: Record<number, string> = {
+    0: 'Love-All',
+    1: 'Fifteen-All',
+    2: 'Thirty-All',
+    3: 'Deuce'
+};
+
 export class TennisGame1 implements TennisGame {
     private m_score1: number = 0;
     private m_score2: number = 0;
@@ -19,18 +26,16 @@ export class TennisGame1 implements TennisGame {
     }
 
     getScore(): string {
-        let score: string = '';
-        let tempScore: number = 0;
-        if (this.m_score1 === this.m_score2) {
-            score = this.finalScoreWhenPlayersHaveEqualScores();
+        if (this.m_score1 >= 4 || this.m_score2 >= 4) {
+            if(this.m_score1 === this.m_score2){
+                return 'Deuce';
+            }
+            return this.finalScoreWhenOnePlayerHaveAtLeastFourPoints();
         }
-        else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-            score = this.finalScoreWhenOnePlayerHaveAtLeastFourPoints();
+        else if (this.m_score1 === this.m_score2) {
+            return EQUAL_SCORE_NAMES[this.m_score1];
         }
-        else {
-            score = this.finalScoreForDefaultCase();
-        }
-        return score;
+        return this.finalScoreForDefaultCase();
     }
 
     private finalScoreForDefaultCase() {
@@ -68,23 +73,5 @@ export class TennisGame1 implements TennisGame {
         else return 'Win for player2';
     }
 
-    private finalScoreWhenPlayersHaveEqualScores() {
-        let score: string = '';
-        switch (this.m_score1) {
-            case 0:
-                score = 'Love-All';
-                break;
-            case 1:
-                score = 'Fifteen-All';
-                break;
-            case 2:
-                score = 'Thirty-All';
-                break;
-            default:
-                score = 'Deuce';
-                break;
 
-        }
-        return score;
-    }
 }
