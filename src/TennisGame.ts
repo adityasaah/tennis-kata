@@ -30,14 +30,18 @@ export class TennisGame1 implements TennisGame {
             return this.calculateEqualScore();
         }
         if(this.isScoreGreaterThanThree()) {
-            let minusResult: number = this.getMinusResult();
-            const player = this.getPlayer(minusResult);
-            minusResult = Math.abs(minusResult);
-            return this.calculateScoreWhenOnePlayerHaveScore4(minusResult, player);
+            return this.calculateScoreGreaterThanFour();
         }
         return this.calculateScoreForDefaultCase();
     }
 
+
+    private calculateScoreGreaterThanFour() {
+        let minusResult: number = this.getMinusResult();
+        const player = this.getPlayer(minusResult);
+        minusResult = Math.abs(minusResult);
+        return this.calculateScoreWhenOnePlayerHaveScore4(minusResult, player);
+    }
 
     private calculateEqualScore() {
         if (this.m_score1 >= 3) return 'Deuce';
