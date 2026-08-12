@@ -7,6 +7,13 @@ const EQUAL_SCORE_NAMES: Record<number, string> = {
     3: 'Deuce'
 };
 
+const TENNIS_SCORE: Record<number, string> = {
+    0: 'Love',
+    1: 'Fifteen',
+    2: 'Thirty',
+    3: 'Forty'
+};
+
 export class TennisGame1 implements TennisGame {
     private m_score1: number = 0;
     private m_score2: number = 0;
@@ -35,36 +42,8 @@ export class TennisGame1 implements TennisGame {
         else if (this.m_score1 === this.m_score2) {
             return EQUAL_SCORE_NAMES[this.m_score1];
         }
-        return this.finalScoreForDefaultCase();
+        return `${TENNIS_SCORE[this.m_score1]}-${TENNIS_SCORE[this.m_score2]}`;
     }
-
-    private finalScoreForDefaultCase() {
-        let score: string = "";
-        let tempScore: number = 0;
-        for (let i = 1; i < 3; i++) {
-            if (i === 1) tempScore = this.m_score1;
-            else {
-                score += '-';
-                tempScore = this.m_score2;
-            }
-            switch (tempScore) {
-                case 0:
-                    score += 'Love';
-                    break;
-                case 1:
-                    score += 'Fifteen';
-                    break;
-                case 2:
-                    score += 'Thirty';
-                    break;
-                case 3:
-                    score += 'Forty';
-                    break;
-            }
-        }
-        return score;
-    }
-
     private finalScoreWhenOnePlayerHaveAtLeastFourPoints() {
         const minusResult: number = this.m_score1 - this.m_score2;
         if (minusResult === 1) return 'Advantage player1';
