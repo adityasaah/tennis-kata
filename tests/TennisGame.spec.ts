@@ -33,5 +33,12 @@ describe('TennisGame', function () {
                 checkScore(new TennisGame1('player1', 'player2'), player1Score, player2Score, expectedScore);
             });
         });
+
+        it('uses constructor player names in score output for Alice and Bob', function () {
+            const game = new TennisGame1('Alice', 'Bob');
+            for (let i = 0; i < 4; i++) game.wonPoint('Alice');
+            for (let i = 0; i < 2; i++) game.wonPoint('Bob');
+            expect(game.getScore()).toBe('Win for Alice');
+        });
     });
 });
