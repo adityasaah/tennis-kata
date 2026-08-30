@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {TennisGame1} from '../src/TennisGame';
+import {TennisGame2 as TennisGameMain} from '../src/TennisGame2';
 import {TennisGame} from '../src/TennisGame.interface';
 import {describe, expect, it} from "vitest";
 
@@ -27,15 +27,15 @@ function checkScore(game: TennisGame, player1Score: number, player2Score: number
 }
 
 describe('TennisGame', function () {
-    describe('TennisGame1', function () {
+    describe('TennisGameMain', function () {
         scores.forEach(([player1Score, player2Score, expectedScore]) => {
             it(`scores ${player1Score}:${player2Score} as ${expectedScore}`, function () {
-                checkScore(new TennisGame1('player1', 'player2'), player1Score, player2Score, expectedScore);
+                checkScore(new TennisGameMain('player1', 'player2'), player1Score, player2Score, expectedScore);
             });
         });
 
         it('uses constructor player names in score output for Alice and Bob', function () {
-            const game = new TennisGame1('Alice', 'Bob');
+            const game = new TennisGameMain('Alice', 'Bob');
             for (let i = 0; i < 4; i++) game.wonPoint('Alice');
             for (let i = 0; i < 2; i++) game.wonPoint('Bob');
             expect(game.getScore()).toBe('Win for Alice');
