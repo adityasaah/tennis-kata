@@ -17,17 +17,16 @@ export class TennisGame2 implements TennisGame {
 
     getScore(): string {
         let score: string = '';
-        if (this.P1point === this.P2point && this.P1point < 4) {
+        if (this.P1point === this.P2point) {
             if (this.P1point === 0)
-                score = 'Love';
-            if (this.P1point === 1)
-                score = 'Fifteen';
-            if (this.P1point === 2)
-                score = 'Thirty';
-            score += '-All';
+                score = 'Love-All';
+            else if (this.P1point === 1)
+                score = 'Fifteen-All';
+            else if (this.P1point === 2)
+                score = 'Thirty-All';
+            else
+                score = 'Deuce';
         }
-        if (this.P1point === this.P2point && this.P1point >= 3)
-            score = 'Deuce';
 
         if (this.P1point > 0 && this.P2point === 0) {
             if (this.P1point === 1)
