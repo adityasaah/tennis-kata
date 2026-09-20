@@ -26,7 +26,7 @@ export class TennisGame2 implements TennisGame {
             return this.getFinalScore();
         }
 
-        if ((this.P1point >= 4 || this.P2point >= 4) && Math.abs(this.P1point - this.P2point) >= 2) {
+        if (this.isWon()) {
             return `Win for ${this.getPlayerWithLargestScore()}`;
         }
 
@@ -35,6 +35,10 @@ export class TennisGame2 implements TennisGame {
         }
 
         return `${SCORE[this.P1point]}-${SCORE[this.P2point]}`;
+    }
+
+    private isWon() {
+        return (this.P1point >= 4 || this.P2point >= 4) && Math.abs(this.P1point - this.P2point) >= 2;
     }
 
     private getPlayerWithLargestScore() {
