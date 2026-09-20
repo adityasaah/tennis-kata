@@ -21,7 +21,7 @@ export class TennisGame2 implements TennisGame {
         this.P2point = 0;
     }
 
-    getScore(): string {
+    public getScore(): string {
         if (this.P1point === this.P2point) {
             return this.getFinalScore();
         }
@@ -59,18 +59,18 @@ export class TennisGame2 implements TennisGame {
     //     }
     // }
 
-    wonPoint(player: string): void {
+    public wonPoint(player: string): void {
         if (player === this.player1Name)
             this.P1Score();
         else
             this.P2Score();
     }
 
-    P2Score(): void {
+    private P2Score(): void {
         this.P2point++;
     }
 
-    P1Score(): void {
+    private P1Score(): void {
         this.P1point++;
     }
 }
