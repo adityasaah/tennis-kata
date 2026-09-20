@@ -11,9 +11,6 @@ export class TennisGame2 implements TennisGame {
     P1point: number = 0;
     P2point: number = 0;
 
-    P1res: string = '';
-    P2res: string = '';
-
     private player1Name: string;
     private player2Name: string;
 
@@ -23,21 +20,8 @@ export class TennisGame2 implements TennisGame {
     }
 
     getScore(): string {
-        let score: string = '';
         if (this.P1point === this.P2point) {
-            if (this.P1point === 0)
-                score = 'Love-All';
-            else if (this.P1point === 1)
-                score = 'Fifteen-All';
-            else if (this.P1point === 2)
-                score = 'Thirty-All';
-            else
-                score = 'Deuce';
-            return score;
-        }
-
-        if(this.P1point <= 3 && this.P2point <= 3){
-            return `${SCORE[this.P1point]}-${SCORE[this.P2point]}`;
+            return this.getFinalScore();
         }
 
         if ((this.P1point >= 4 || this.P2point >= 4) && Math.abs(this.P1point - this.P2point) >= 2) {
@@ -48,7 +32,18 @@ export class TennisGame2 implements TennisGame {
             return 'Advantage ' + (this.P1point > this.P2point ? this.player1Name : this.player2Name);
         }
 
-        return score;
+        return `${SCORE[this.P1point]}-${SCORE[this.P2point]}`;
+    }
+
+    private getFinalScore() {
+        if (this.P1point === 0)
+            return 'Love-All';
+        else if (this.P1point === 1)
+            return 'Fifteen-All';
+        else if (this.P1point === 2)
+            return 'Thirty-All';
+        else
+            return 'Deuce';
     }
 
     SetP1Score(score: number): void {
