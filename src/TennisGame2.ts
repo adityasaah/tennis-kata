@@ -25,14 +25,18 @@ export class TennisGame2 implements TennisGame {
         }
 
         if ((this.P1point >= 4 || this.P2point >= 4) && Math.abs(this.P1point - this.P2point) >= 2) {
-            return 'Win for ' + (this.P1point > this.P2point ? this.player1Name : this.player2Name);
+            return `Win for ${this.getPlayerWithLargestScore()}`;
         }
 
         if (Math.min(this.P2point, this.P1point) >= 3) {
-            return 'Advantage ' + (this.P1point > this.P2point ? this.player1Name : this.player2Name);
+            return `Advantage ${this.getPlayerWithLargestScore()}`;
         }
 
         return `${SCORE[this.P1point]}-${SCORE[this.P2point]}`;
+    }
+
+    private getPlayerWithLargestScore() {
+        return this.P1point > this.P2point ? this.player1Name : this.player2Name;
     }
 
     private getFinalScore() {
