@@ -20,14 +20,22 @@ export class TennisGame3 implements TennisGame {
         if (this.player1Score === this.player2Score) {
             return this.getTieScore();
         }
-        let s: string;
-        if (this.player1Score < 4 && this.player2Score < 4 && !(this.player1Score + this.player2Score === 6)) {
-            s = this.TennisScore[this.player1Score];
-            return (this.player1Score === this.player2Score) ? s + '-All' : s + '-' + this.TennisScore[this.player2Score];
-        } else {
-            s = this.player1Score > this.player2Score ? this.player1Name : this.player2Name;
-            return (((this.player1Score - this.player2Score) * (this.player1Score - this.player2Score)) === 1) ? 'Advantage ' + s : 'Win for ' + s;
+
+        if (this.player1Score <= 3 && this.player2Score <= 3) {
+            return this.TennisScore[this.player1Score] + '-' + this.TennisScore[this.player2Score];
         }
+
+        const leadPlayer = this.getPlayerWithLeadScore();
+
+        if (Math.abs(this.player1Score - this.player2Score) === 1){
+            return 'Advantage ' + leadPlayer;
+        }
+
+        return 'Win for ' + leadPlayer;
+    }
+
+    private getPlayerWithLeadScore() {
+        return this.player1Score > this.player2Score ? this.player1Name : this.player2Name;
     }
 
     private getTieScore() {
