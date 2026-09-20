@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {TennisGame2 as TennisGameMain} from '../src/TennisGame2';
+import {TennisGame3 as TennisGameMain} from '../src/TennisGame3';
 import {TennisGame} from '../src/TennisGame.interface';
 import {describe, expect, it} from "vitest";
 
