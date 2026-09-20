@@ -36,14 +36,9 @@ export class TennisGame2 implements TennisGame {
     }
 
     private getFinalScore() {
-        if (this.P1point === 0)
-            return 'Love-All';
-        else if (this.P1point === 1)
-            return 'Fifteen-All';
-        else if (this.P1point === 2)
-            return 'Thirty-All';
-        else
-            return 'Deuce';
+        if (this.P1point <= 2)
+            return `${SCORE[this.P1point]}-All`;
+        return 'Deuce';
     }
 
     SetP1Score(score: number): void {
