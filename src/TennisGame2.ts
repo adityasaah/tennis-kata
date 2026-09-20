@@ -44,13 +44,10 @@ export class TennisGame2 implements TennisGame {
             return 'Win for ' + (this.P1point > this.P2point ? this.player1Name : this.player2Name);
         }
 
-        if (this.P1point > this.P2point && this.P2point >= 3) {
+        if (Math.min(this.P2point, this.P1point) >= 3) {
+            return 'Advantage ' + (this.P1point > this.P2point ? this.player1Name : this.player2Name);
+        }
 
-            score = 'Advantage ' + this.player1Name;
-        }
-        if (this.P2point > this.P1point && this.P1point >= 3) {
-            score = 'Advantage ' + this.player2Name;
-        }
         return score;
     }
 
