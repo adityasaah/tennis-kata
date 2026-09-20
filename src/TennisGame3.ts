@@ -22,16 +22,16 @@ export class TennisGame3 implements TennisGame {
         }
 
         if (this.player1Score <= 3 && this.player2Score <= 3) {
-            return this.TennisScore[this.player1Score] + '-' + this.TennisScore[this.player2Score];
+            return `${this.TennisScore[this.player1Score]}-${this.TennisScore[this.player2Score]}`;
         }
 
         const leadPlayer = this.getPlayerWithLeadScore();
 
         if (Math.abs(this.player1Score - this.player2Score) === 1){
-            return 'Advantage ' + leadPlayer;
+            return `Advantage ${leadPlayer}`;
         }
 
-        return 'Win for ' + leadPlayer;
+        return `Win for ${leadPlayer}`;
     }
 
     private getPlayerWithLeadScore() {
