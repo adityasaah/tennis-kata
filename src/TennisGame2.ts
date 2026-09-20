@@ -8,8 +8,8 @@ const SCORE: Record<number, string> = {
 };
 
 export class TennisGame2 implements TennisGame {
-    P1point: number = 0;
-    P2point: number = 0;
+    P1point: number;
+    P2point: number;
 
     private player1Name: string;
     private player2Name: string;
@@ -17,6 +17,8 @@ export class TennisGame2 implements TennisGame {
     constructor(player1Name: string, player2Name: string) {
         this.player1Name = player1Name;
         this.player2Name = player2Name;
+        this.P1point = 0;
+        this.P2point = 0;
     }
 
     getScore(): string {
@@ -45,30 +47,30 @@ export class TennisGame2 implements TennisGame {
         return 'Deuce';
     }
 
-    SetP1Score(score: number): void {
-        for (let i = 0; i < score; i++) {
-            this.P1Score();
-        }
-    }
-
-    SetP2Score(score: number): void {
-        for (let i = 0; i < score; i++) {
-            this.P2Score();
-        }
-    }
-
-    P1Score(): void {
-        this.P1point++;
-    }
-
-    P2Score(): void {
-        this.P2point++;
-    }
+    // SetP1Score(score: number): void {
+    //     for (let i = 0; i < score; i++) {
+    //         this.P1Score();
+    //     }
+    // }
+    //
+    // SetP2Score(score: number): void {
+    //     for (let i = 0; i < score; i++) {
+    //         this.P2Score();
+    //     }
+    // }
 
     wonPoint(player: string): void {
         if (player === this.player1Name)
             this.P1Score();
         else
             this.P2Score();
+    }
+
+    P2Score(): void {
+        this.P2point++;
+    }
+
+    P1Score(): void {
+        this.P1point++;
     }
 }
