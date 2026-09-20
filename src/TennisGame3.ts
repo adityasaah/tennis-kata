@@ -21,7 +21,7 @@ export class TennisGame3 implements TennisGame {
             return this.getTieScore();
         }
 
-        if (this.player1Score <= 3 && this.player2Score <= 3) {
+        if (this.isRegularScore()) {
             return `${this.TennisScore[this.player1Score]}-${this.TennisScore[this.player2Score]}`;
         }
 
@@ -32,6 +32,10 @@ export class TennisGame3 implements TennisGame {
         }
 
         return `Win for ${leadPlayer}`;
+    }
+
+    private isRegularScore() {
+        return this.player1Score <= 3 && this.player2Score <= 3;
     }
 
     private getPlayerWithLeadScore() {
